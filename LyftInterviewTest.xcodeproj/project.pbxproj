@@ -26,6 +26,7 @@
 		5249CE9B1A731CCA00B91CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5249CE9A1A731CCA00B91CE8 /* Images.xcassets */; };
 		5249CE9E1A731CCA00B91CE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5249CE9C1A731CCA00B91CE8 /* LaunchScreen.xib */; };
 		5249CEAA1A731CCA00B91CE8 /* LyftInterviewTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249CEA91A731CCA00B91CE8 /* LyftInterviewTestTests.swift */; };
+		52B6D3DA1A732AA300CFB0A2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6D3D91A732AA300CFB0A2 /* Appearance.swift */; };
 		52F318771A731F760080001E /* TripHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318761A731F760080001E /* TripHistoryTableViewController.swift */; };
 		52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52F318781A731F950080001E /* TripHistoryModel.xcdatamodeld */; };
 		52F3188B1A7321A60080001E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318861A7321A60080001E /* Place.swift */; };
@@ -65,6 +66,7 @@
 		5249CEA31A731CCA00B91CE8 /* LyftInterviewTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyftInterviewTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5249CEA81A731CCA00B91CE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5249CEA91A731CCA00B91CE8 /* LyftInterviewTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyftInterviewTestTests.swift; sourceTree = "<group>"; };
+		52B6D3D91A732AA300CFB0A2 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Utilities/Appearance.swift; sourceTree = "<group>"; };
 		52F318701A731E680080001E /* lyft-interview-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lyft-interview-bridging-header.h"; sourceTree = "<group>"; };
 		52F318761A731F760080001E /* TripHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripHistoryTableViewController.swift; path = Controllers/TripHistoryTableViewController.swift; sourceTree = "<group>"; };
 		52F318791A731F950080001E /* TripHistoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripHistoryModel.xcdatamodel; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		52F318741A731ED10080001E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				52B6D3D91A732AA300CFB0A2 /* Appearance.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				52F3188C1A7321A60080001E /* Trip.swift in Sources */,
 				5249CE941A731CCA00B91CE8 /* AppDelegate.swift in Sources */,
 				52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */,
+				52B6D3DA1A732AA300CFB0A2 /* Appearance.swift in Sources */,
 				52F318771A731F760080001E /* TripHistoryTableViewController.swift in Sources */,
 				52F3188E1A7321A60080001E /* _Trip.swift in Sources */,
 				52F3188B1A7321A60080001E /* Place.swift in Sources */,
@@ -697,6 +701,7 @@
 				52F3187F1A731FBC0080001E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
