@@ -27,6 +27,8 @@
 		5249CE9E1A731CCA00B91CE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5249CE9C1A731CCA00B91CE8 /* LaunchScreen.xib */; };
 		5249CEAA1A731CCA00B91CE8 /* LyftInterviewTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249CEA91A731CCA00B91CE8 /* LyftInterviewTestTests.swift */; };
 		52B6D3DA1A732AA300CFB0A2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6D3D91A732AA300CFB0A2 /* Appearance.swift */; };
+		52B6D3DE1A732CA500CFB0A2 /* TripManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6D3DD1A732CA500CFB0A2 /* TripManager.swift */; };
+		52E69EB91A741237000C3F05 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E69EB81A741237000C3F05 /* DateExtensions.swift */; };
 		52F318771A731F760080001E /* TripHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318761A731F760080001E /* TripHistoryTableViewController.swift */; };
 		52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52F318781A731F950080001E /* TripHistoryModel.xcdatamodeld */; };
 		52F3188B1A7321A60080001E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318861A7321A60080001E /* Place.swift */; };
@@ -67,6 +69,8 @@
 		5249CEA81A731CCA00B91CE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5249CEA91A731CCA00B91CE8 /* LyftInterviewTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyftInterviewTestTests.swift; sourceTree = "<group>"; };
 		52B6D3D91A732AA300CFB0A2 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Utilities/Appearance.swift; sourceTree = "<group>"; };
+		52B6D3DD1A732CA500CFB0A2 /* TripManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripManager.swift; path = Singletons/TripManager.swift; sourceTree = "<group>"; };
+		52E69EB81A741237000C3F05 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Extensions/DateExtensions.swift; sourceTree = "<group>"; };
 		52F318701A731E680080001E /* lyft-interview-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lyft-interview-bridging-header.h"; sourceTree = "<group>"; };
 		52F318761A731F760080001E /* TripHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripHistoryTableViewController.swift; path = Controllers/TripHistoryTableViewController.swift; sourceTree = "<group>"; };
 		52F318791A731F950080001E /* TripHistoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripHistoryModel.xcdatamodel; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				5249CE931A731CCA00B91CE8 /* AppDelegate.swift */,
 				5249CE9A1A731CCA00B91CE8 /* Images.xcassets */,
 				52F318721A731EC50080001E /* Controllers */,
+				52E69EB71A741218000C3F05 /* Extensions */,
 				52F318711A731EBD0080001E /* Models */,
 				52F318751A731EDB0080001E /* Singletons */,
 				5249CE911A731CCA00B91CE8 /* Supporting Files */,
@@ -156,6 +161,14 @@
 				5249CEA81A731CCA00B91CE8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52E69EB71A741218000C3F05 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				52E69EB81A741237000C3F05 /* DateExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		52F318711A731EBD0080001E /* Models */ = {
@@ -196,6 +209,7 @@
 		52F318751A731EDB0080001E /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
+				52B6D3DD1A732CA500CFB0A2 /* TripManager.swift */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -456,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52F3188C1A7321A60080001E /* Trip.swift in Sources */,
+				52E69EB91A741237000C3F05 /* DateExtensions.swift in Sources */,
 				5249CE941A731CCA00B91CE8 /* AppDelegate.swift in Sources */,
 				52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */,
 				52B6D3DA1A732AA300CFB0A2 /* Appearance.swift in Sources */,
@@ -463,6 +478,7 @@
 				52F3188E1A7321A60080001E /* _Trip.swift in Sources */,
 				52F3188B1A7321A60080001E /* Place.swift in Sources */,
 				52F3188D1A7321A60080001E /* _Place.swift in Sources */,
+				52B6D3DE1A732CA500CFB0A2 /* TripManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

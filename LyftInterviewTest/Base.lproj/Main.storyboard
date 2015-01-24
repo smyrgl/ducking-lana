@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cIz-uG-1zE">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Trip History Table View Controller-->
@@ -13,38 +14,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="XHt-64-2yh">
-                            <rect key="frame" x="0.0" y="64" width="600" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9n-73-lXs">
-                                    <rect key="frame" x="530" y="17" width="51" height="31"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="31" id="a4Q-H6-ynT"/>
-                                        <constraint firstAttribute="width" constant="49" id="pvE-5J-SZF"/>
-                                    </constraints>
-                                    <color key="onTintColor" red="0.082352941176470587" green="0.65098039215686276" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
-                                </switch>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Logging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ife-Dk-W2b">
-                                    <rect key="frame" x="24" y="15" width="114.5" height="36"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="PIx-3u-Ome"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                    <color key="textColor" red="0.32549019607843138" green="0.31764705882352939" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="centerY" secondItem="Ife-Dk-W2b" secondAttribute="centerY" id="1rC-W1-HPR"/>
-                                <constraint firstAttribute="centerY" secondItem="l9n-73-lXs" secondAttribute="centerY" id="TPr-0M-eHg"/>
-                                <constraint firstAttribute="trailing" secondItem="l9n-73-lXs" secondAttribute="trailing" constant="21" id="gSC-4b-aVM"/>
-                                <constraint firstItem="Ife-Dk-W2b" firstAttribute="leading" secondItem="XHt-64-2yh" secondAttribute="leading" constant="24" id="oOZ-dE-vBU"/>
-                            </constraints>
-                        </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tripCell" textLabel="5xB-q0-rcX" detailTextLabel="dsO-CM-2qh" rowHeight="63" style="IBUITableViewCellStyleSubtitle" id="K7I-zv-GKv">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="switchCell" rowHeight="63" id="mU8-jq-mw7">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mU8-jq-mw7" id="4BF-nG-gQ9">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Logging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ife-Dk-W2b">
+                                            <rect key="frame" x="26" y="14" width="114.5" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="dUF-hC-PyG"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" red="0.32549019607843138" green="0.31764705882352939" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9n-73-lXs">
+                                            <rect key="frame" x="525" y="16" width="51" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="jhG-dN-9dv"/>
+                                                <constraint firstAttribute="width" constant="49" id="nAd-BV-Eyc"/>
+                                            </constraints>
+                                            <color key="onTintColor" red="0.082352941176470587" green="0.65098039215686276" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ife-Dk-W2b" firstAttribute="leading" secondItem="4BF-nG-gQ9" secondAttribute="leadingMargin" constant="18" id="FRE-Eg-s9n"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="l9n-73-lXs" secondAttribute="trailing" constant="18" id="SN0-T3-HN3"/>
+                                        <constraint firstAttribute="centerY" secondItem="l9n-73-lXs" secondAttribute="centerY" id="f8Q-eI-aRk"/>
+                                        <constraint firstAttribute="centerY" secondItem="Ife-Dk-W2b" secondAttribute="centerY" id="kf0-sc-OfQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tripCell" textLabel="5xB-q0-rcX" detailTextLabel="dsO-CM-2qh" imageView="pjs-Vh-wzx" rowHeight="63" style="IBUITableViewCellStyleSubtitle" id="K7I-zv-GKv">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K7I-zv-GKv" id="Zae-Fr-JCB">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -61,6 +63,9 @@
                                             <color key="textColor" red="0.50196078431372548" green="0.49019607843137253" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_car" id="pjs-Vh-wzx">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -112,6 +117,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_car" width="54" height="41"/>
         <image name="navbar" width="641" height="90"/>
     </resources>
 </document>

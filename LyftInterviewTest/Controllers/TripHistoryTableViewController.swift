@@ -8,13 +8,17 @@
 
 import UIKit
 
+private let offset = 1
+
 class TripHistoryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     lazy var fetchedResultsController = Trip.MR_fetchAllSortedBy("startTime",
         ascending: false,
-        withPredicate: nil,
+        withPredicate: NSPredicate(format: "end != nil"),
         groupBy: nil,
         delegate: nil)
+    
+    private var tripSwitch: UISwitch?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,17 +39,31 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let fetchedObjects = fetchedResultsController.fetchedObjects {
-            return fetchedObjects.count
+            return fetchedObjects.count + offset
         }
         return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tripCell", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath) as UITableViewCell
+            
+            if let theSwitch = cell.viewWithTag(1) as? UISwitch {
+                if theSwitch != tripSwitch {
+                    theSwitch.addTarget(self, action: "tripSwitchChanged", forControlEvents: .ValueChanged)
+                }
+                theSwitch.on = TripManager.sharedManager.loggingEnabled
+                tripSwitch = theSwitch
+            }
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("tripCell", forIndexPath: indexPath) as UITableViewCell
+            
+            configureCell(cell, atIndexPath: offsetIndexPath(indexPath))
+            
+            return cell
+        }
     }
     
     // MARK: Fetched results controller delegate
@@ -66,23 +84,24 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
         switch type {
         case .Insert:
             if let newPath = newIndexPath {
-                tableView.insertRowsAtIndexPaths([newPath], withRowAnimation: .Fade)
+                tableView.insertRowsAtIndexPaths([offsetIndexPath(newPath)], withRowAnimation: .Fade)
             }
         case .Delete:
             if let idxPath = indexPath {
-                tableView.deleteRowsAtIndexPaths([idxPath], withRowAnimation: .Fade)
+                tableView.deleteRowsAtIndexPaths([offsetIndexPath(idxPath)], withRowAnimation: .Fade)
             }
         case .Update:
             if let idxPath = indexPath {
-                if let cell = tableView.cellForRowAtIndexPath(idxPath) {
-                    configureCell(cell, atIndexPath: idxPath)
+                let offsetPath = offsetIndexPath(idxPath)
+                if let cell = tableView.cellForRowAtIndexPath(offsetPath) {
+                    configureCell(cell, atIndexPath: offsetPath)
                 }
             }
         case .Move:
             if let newPath = newIndexPath {
                 if let idxPath = indexPath {
-                    tableView.deleteRowsAtIndexPaths([idxPath], withRowAnimation: .Fade)
-                    tableView.insertRowsAtIndexPaths([newPath], withRowAnimation: .Fade)
+                    tableView.deleteRowsAtIndexPaths([offsetIndexPath(idxPath)], withRowAnimation: .Fade)
+                    tableView.insertRowsAtIndexPaths([offsetIndexPath(newPath)], withRowAnimation: .Fade)
                 }
             }
         }
@@ -94,11 +113,36 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
 
     // MARK: - Internal
     
-    private func configureCell(cell: UITableViewCell, atIndexPath: NSIndexPath) {
-        
+    private func offsetIndexPath(originalPath: NSIndexPath) -> NSIndexPath {
+        return NSIndexPath(forRow: originalPath.row + offset, inSection: originalPath.section)
     }
     
+    private func configureCell(cell: UITableViewCell, atIndexPath: NSIndexPath) {
+        if let fetchedObjects = fetchedResultsController.fetchedObjects {
+            if let trip = fetchedObjects[atIndexPath.row] as? Trip {
+                cell.imageView?.contentMode = .Center
+                if let label = cell.textLabel {
+                    label.text = trip.displayString
+                }
+                if let sublabel = cell.detailTextLabel {
+                    sublabel.text = trip.durationDisplayString
+                }
+            }
+        }
+    }
     
+    func tripSwitchChanged() {
+        println("Trip switch changed")
+        if let theTripSwitch = tripSwitch {
+            if theTripSwitch.on {
+                println("Trip switch turned on")
+                TripManager.sharedManager.enableLogging()
+            } else {
+                println("Trip switch turned off")
+                TripManager.sharedManager.disableLogging()
+            }
+        }
+    }
     
     
 }
