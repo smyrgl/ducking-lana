@@ -6,12 +6,32 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		52F3187C1A731FBB0080001E /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 52F3187D1A731FBC0080001E /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				52F318801A731FBF0080001E /* Build models */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		5249CE941A731CCA00B91CE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249CE931A731CCA00B91CE8 /* AppDelegate.swift */; };
 		5249CE991A731CCA00B91CE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5249CE971A731CCA00B91CE8 /* Main.storyboard */; };
 		5249CE9B1A731CCA00B91CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5249CE9A1A731CCA00B91CE8 /* Images.xcassets */; };
 		5249CE9E1A731CCA00B91CE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5249CE9C1A731CCA00B91CE8 /* LaunchScreen.xib */; };
 		5249CEAA1A731CCA00B91CE8 /* LyftInterviewTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249CEA91A731CCA00B91CE8 /* LyftInterviewTestTests.swift */; };
+		52F318771A731F760080001E /* TripHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318761A731F760080001E /* TripHistoryTableViewController.swift */; };
+		52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52F318781A731F950080001E /* TripHistoryModel.xcdatamodeld */; };
+		52F3188B1A7321A60080001E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318861A7321A60080001E /* Place.swift */; };
+		52F3188C1A7321A60080001E /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318871A7321A60080001E /* Trip.swift */; };
+		52F3188D1A7321A60080001E /* _Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318891A7321A60080001E /* _Place.swift */; };
+		52F3188E1A7321A60080001E /* _Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3188A1A7321A60080001E /* _Trip.swift */; };
 		5D39E8A0311F09083541A401 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047647ABC2BE958A9DA0671E /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FCD3C5BF08375DAC224F2E2C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047647ABC2BE958A9DA0671E /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -23,6 +43,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5249CE8D1A731CCA00B91CE8;
 			remoteInfo = LyftInterviewTest;
+		};
+		52F318831A73201B0080001E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5249CE861A731CCA00B91CE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52F3187C1A731FBB0080001E;
+			remoteInfo = Mogenerator;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -39,6 +66,12 @@
 		5249CEA81A731CCA00B91CE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5249CEA91A731CCA00B91CE8 /* LyftInterviewTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyftInterviewTestTests.swift; sourceTree = "<group>"; };
 		52F318701A731E680080001E /* lyft-interview-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lyft-interview-bridging-header.h"; sourceTree = "<group>"; };
+		52F318761A731F760080001E /* TripHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripHistoryTableViewController.swift; path = Controllers/TripHistoryTableViewController.swift; sourceTree = "<group>"; };
+		52F318791A731F950080001E /* TripHistoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripHistoryModel.xcdatamodel; sourceTree = "<group>"; };
+		52F318861A7321A60080001E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		52F318871A7321A60080001E /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		52F318891A7321A60080001E /* _Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Place.swift; sourceTree = "<group>"; };
+		52F3188A1A7321A60080001E /* _Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Trip.swift; sourceTree = "<group>"; };
 		6CE2C72243E3D01186818412 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,10 +119,13 @@
 			isa = PBXGroup;
 			children = (
 				5249CE931A731CCA00B91CE8 /* AppDelegate.swift */,
-				5249CE971A731CCA00B91CE8 /* Main.storyboard */,
 				5249CE9A1A731CCA00B91CE8 /* Images.xcassets */,
-				5249CE9C1A731CCA00B91CE8 /* LaunchScreen.xib */,
+				52F318721A731EC50080001E /* Controllers */,
+				52F318711A731EBD0080001E /* Models */,
+				52F318751A731EDB0080001E /* Singletons */,
 				5249CE911A731CCA00B91CE8 /* Supporting Files */,
+				52F318741A731ED10080001E /* Utilities */,
+				52F318731A731ECA0080001E /* Views */,
 			);
 			path = LyftInterviewTest;
 			sourceTree = "<group>";
@@ -118,6 +154,67 @@
 				5249CEA81A731CCA00B91CE8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52F318711A731EBD0080001E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52F318851A7321A60080001E /* Human */,
+				52F318881A7321A60080001E /* Machine */,
+				52F318781A731F950080001E /* TripHistoryModel.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		52F318721A731EC50080001E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52F318761A731F760080001E /* TripHistoryTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		52F318731A731ECA0080001E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5249CE9C1A731CCA00B91CE8 /* LaunchScreen.xib */,
+				5249CE971A731CCA00B91CE8 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		52F318741A731ED10080001E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		52F318751A731EDB0080001E /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Singletons;
+			sourceTree = "<group>";
+		};
+		52F318851A7321A60080001E /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				52F318861A7321A60080001E /* Place.swift */,
+				52F318871A7321A60080001E /* Trip.swift */,
+			);
+			name = Human;
+			path = Models/Human;
+			sourceTree = "<group>";
+		};
+		52F318881A7321A60080001E /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				52F318891A7321A60080001E /* _Place.swift */,
+				52F3188A1A7321A60080001E /* _Trip.swift */,
+			);
+			name = Machine;
+			path = Models/Machine;
 			sourceTree = "<group>";
 		};
 		C07E852AE75E26E6CDCF352F /* Pods */ = {
@@ -154,6 +251,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				52F318841A73201B0080001E /* PBXTargetDependency */,
 			);
 			name = LyftInterviewTest;
 			productName = LyftInterviewTest;
@@ -197,6 +295,9 @@
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 5249CE8D1A731CCA00B91CE8;
 					};
+					52F3187C1A731FBB0080001E = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 				};
 			};
 			buildConfigurationList = 5249CE891A731CCA00B91CE8 /* Build configuration list for PBXProject "LyftInterviewTest" */;
@@ -214,6 +315,7 @@
 			targets = (
 				5249CE8D1A731CCA00B91CE8 /* LyftInterviewTest */,
 				5249CEA21A731CCA00B91CE8 /* LyftInterviewTestTests */,
+				52F3187C1A731FBB0080001E /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -253,6 +355,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		52F318801A731FBF0080001E /* Build models */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build models";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/mogenerator --v2 --model LyftInterviewTest/Models/TripHistoryModel.xcdatamodeld --swift --machine-dir LyftInterviewTest/Models/Machine --human-dir LyftInterviewTest/Models/Human --v2";
 		};
 		6A80A1CEF168AA35973F6FDA /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -336,7 +452,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F3188C1A7321A60080001E /* Trip.swift in Sources */,
 				5249CE941A731CCA00B91CE8 /* AppDelegate.swift in Sources */,
+				52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */,
+				52F318771A731F760080001E /* TripHistoryTableViewController.swift in Sources */,
+				52F3188E1A7321A60080001E /* _Trip.swift in Sources */,
+				52F3188B1A7321A60080001E /* Place.swift in Sources */,
+				52F3188D1A7321A60080001E /* _Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +477,11 @@
 			isa = PBXTargetDependency;
 			target = 5249CE8D1A731CCA00B91CE8 /* LyftInterviewTest */;
 			targetProxy = 5249CEA41A731CCA00B91CE8 /* PBXContainerItemProxy */;
+		};
+		52F318841A73201B0080001E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52F3187C1A731FBB0080001E /* Mogenerator */;
+			targetProxy = 52F318831A73201B0080001E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -519,6 +646,20 @@
 			};
 			name = Release;
 		};
+		52F3187E1A731FBC0080001E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		52F3187F1A731FBC0080001E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -549,7 +690,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		52F3187D1A731FBC0080001E /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F3187E1A731FBC0080001E /* Debug */,
+				52F3187F1A731FBC0080001E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		52F318781A731F950080001E /* TripHistoryModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				52F318791A731F950080001E /* TripHistoryModel.xcdatamodel */,
+			);
+			currentVersion = 52F318791A731F950080001E /* TripHistoryModel.xcdatamodel */;
+			name = TripHistoryModel.xcdatamodeld;
+			path = Models/TripHistoryModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5249CE861A731CCA00B91CE8 /* Project object */;
 }
