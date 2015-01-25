@@ -127,6 +127,9 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
                 if let sublabel = cell.detailTextLabel {
                     sublabel.text = trip.durationDisplayString
                 }
+                if let imageView = cell.imageView {
+                    imageView.image = UIImage(named: "icon_car")?.imageWithRenderingMode(.AlwaysTemplate)
+                }
             }
         }
     }

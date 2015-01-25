@@ -24,9 +24,9 @@ class Trip: _Trip {
     var durationDisplayString: String {
         var displayString = ""
         if let sTime = startTime {
-            displayString += "\(Trip.sharedTimeFormatter().stringFromDate(sTime))-"
+            displayString += "\(Trip.sharedTimeFormatter().stringFromDate(sTime).lowercaseString)-"
             if let eTime = endTime {
-                displayString += "\(Trip.sharedTimeFormatter().stringFromDate(eTime)) (\(sTime.minutesBetweenDate(eTime))min)"
+                displayString += "\(Trip.sharedTimeFormatter().stringFromDate(eTime).lowercaseString) (\(sTime.minutesBetweenDate(eTime))min)"
             } else {
                 displayString += "Now"
             }
@@ -46,7 +46,7 @@ class Trip: _Trip {
             return sharedFormatter
         } else {
             let sharedFormatter = NSDateFormatter()
-            sharedFormatter.dateFormat = "HH:mm"
+            sharedFormatter.dateFormat = "h:mma"
             sharedFormatter.timeZone = NSTimeZone.systemTimeZone()
             NSThread.currentThread().threadDictionary[timeFormatterCacheKey] = sharedFormatter
             return sharedFormatter

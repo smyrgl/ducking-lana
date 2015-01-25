@@ -53,18 +53,19 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="123 Happy Lane &gt; 434 Main Street" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5xB-q0-rcX">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="textColor" red="0.32549019607843138" green="0.31764705882352939" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="1:20pm - 2:45pm (25min)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsO-CM-2qh">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                             <color key="textColor" red="0.50196078431372548" green="0.49019607843137253" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_car" id="pjs-Vh-wzx">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="tintColor" red="0.53333333333333333" green="0.52941176470588236" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
