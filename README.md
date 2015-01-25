@@ -49,6 +49,9 @@ Although not mentioned in the functional requirements, because of the possibilit
 ### Notifications
 There was nothing in the requirements about firing local notifications when a trip would start/end but it seems like a logical thing to include.  I didn't because I didn't want to overcomplexify things and add permissions that weren't necessary but I did consider it.
 
+### In progress trips
+Although there is accomodation in the models for displaying in progress trips, I decided against displaying them as it might be confusing.  In addition, I wanted to create a seperation between the sources and the TripManager and not create the Trip objects until the trip was complete, but this is easy enough to refactor should it be considered.  I'm only mentioning this because I did include code in the display strings to accomodate it and I didn't want that to be confusing.
+
 Testing
 -------
 Because of the time constraints and the involved nature of doing tests for location I did not provide unit tests but I thought I would lay out the testing methodology I would use if I had the time to implement them.
@@ -61,3 +64,14 @@ This would be pretty straightforward, but since so little validation is done cur
 
 ### View testing
 Unnecessary in my opinion with such a simple app and I don't really see much value in view testing in the work I've done.  
+
+Other Notes
+-----------
+### Geocoding
+Because the geocoders return async and I don't want the context to save until they are complete, I used a dispatch_semaphore to ensure concurrency (the managing thread is off the main thread).  This may not be the most elegant approach but it has no inherent harm and it is efficient, I just might have considered wrapping it up a little differently if it was production code.  
+
+### Logging
+I'm just using println statements, if this were production code I would have used CocoaLumberjack or similar to prevent logging to the console and enable async logging but it seemed overkill since I was trying to limit 3rd party depedencies.
+
+### Formatter caching
+Because the display strings can theoretically be generated from threads other than main (they are core data objects after all) I cached the expensive formatter objects.  Most commonly people prefer doing this in a singleton but to prevent concurrency demands I cache them and lazily create them in the thread dictionary.  This might be a pattern that isn't commonly seen but in my experience it is much less of a headache than the alternatives and it does solve for cases where you might be doing background processing on a number of threads.

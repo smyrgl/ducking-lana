@@ -145,6 +145,7 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
                     } else {
                         println("Error starting trip manager \(error)")
                         if let err = error {
+                            theTripSwitch.setOn(false, animated: true)
                             UIAlertView.alertWithError(err)
                         }
                     }
