@@ -11,7 +11,7 @@ import CoreLocation
 
 private let errorDomain = "com.lyftinterviewtest.tripsource.corelocation.errors"
 private let tripStartLocationKey = "com.lyftinterviewtest.tripsource.corelocation.tripstart"
-private let stopTimeBeforeTripEnds = 1.0
+private let stopTimeBeforeTripEnds = 60.0
 
 enum TripCoreLocationSourceErrorCodes: Int {
     case AuthorizationError = 101
@@ -32,11 +32,12 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.distanceFilter = 100
         if let data = NSUserDefaults.standardUserDefaults().dataForKey(tripStartLocationKey) {
-            println("Resuming trip")
-            tripStartLocation = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? CLLocation
-            tripInProgress = true
+            if let previousStartLoc = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? CLLocation {
+                println("Resuming trip")
+                tripStartLocation = previousStartLoc
+                tripInProgress = true
+            }
         }
     }
     
