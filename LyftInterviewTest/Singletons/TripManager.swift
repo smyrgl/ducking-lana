@@ -12,6 +12,7 @@ import CoreLocation
 private let _sharedManager = TripManager()
 private let tripLoggingEnabledKey = "com.lyftinterviewtest.userdefaults.logging.enabled"
 private let errorDomain = "com.lyftinterviewtest.tripsource.tripmanager.errors"
+// Equivalent constant to 10mph threshold.
 let driveMetersPerSecond = 4.4704
 
 private enum TripManagerErrorCodes: Int {
@@ -105,6 +106,7 @@ class TripManager: TripSourceDelegate {
     }
     
     func sourceDidEndTrip(source: TripManagerSource, report: TripReport) {
+        // Do this on a background thread, we are going to be waiting for the geocoder tasks to complete before saving the context.
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
             let context = NSManagedObjectContext.MR_context()
             
@@ -123,12 +125,14 @@ class TripManager: TripSourceDelegate {
             endPlace.longitude = report.endLocation.coordinate.longitude
             trip.end = endPlace
             
+            // So that we don't need to use child contexts just use a semaphore to wait for the geocoding events.
             let semaphore = dispatch_semaphore_create(1)
             
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
 
             self.geocoder.reverseGeocodeLocation(report.startLocation,
                 completionHandler: { (placemarks, error) -> Void in
+                    // If we can't find a placemark use the latlong.
                     if let placemark = placemarks.first as? CLPlacemark {
                         startPlace.displayName = placemark.name
                     } else {
@@ -141,6 +145,7 @@ class TripManager: TripSourceDelegate {
             
             self.geocoder.reverseGeocodeLocation(report.endLocation,
                 completionHandler: { (placemarks, error) -> Void in
+                    // If we can't find a placemark use the latlong.
                     if let placemark = placemarks.first as? CLPlacemark {
                         endPlace.displayName = placemark.name
                     } else {
@@ -150,7 +155,9 @@ class TripManager: TripSourceDelegate {
             })
             
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+            // Save the trip, will be picked up by the FRC.
             context.MR_saveToPersistentStoreAndWait()
+            // Make sure the semaphore is signaled or else this will never complete.
             dispatch_semaphore_signal(semaphore)
         })
     }

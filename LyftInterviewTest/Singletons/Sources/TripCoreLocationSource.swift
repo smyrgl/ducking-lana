@@ -33,6 +33,7 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
         super.init()
         locationManager.delegate = self
         if let data = NSUserDefaults.standardUserDefaults().dataForKey(tripStartLocationKey) {
+            // Check if there is a stored trip start that never finished.  If so resume it.
             if let previousStartLoc = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? CLLocation {
                 println("Resuming trip")
                 tripStartLocation = previousStartLoc
@@ -91,26 +92,32 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         println("Location manager updated locations")
         if tripInProgress {
+            // Enumerate in reverse so we get the first reported instance of the trip being stopped.
             for location in locations.reverse() {
                 if let loc = location as? CLLocation {
                     if loc.speed < driveMetersPerSecond {
+                        // If there is already a candidate for the trip stopping, check to see if the stop period has been long enough.
                         if let stopLoc = tripStopLocation {
                             if loc.timestamp.timeIntervalSinceDate(stopLoc.timestamp) > stopTimeBeforeTripEnds {
                                 stopTrip()
                             }
                         } else {
+                            // If this is the first location fix below the threshold marked for the trip being over then set it as the stop event.
                             tripStopLocation = loc
                         }
                     } else {
+                        // If the locations have increased speed beyond the threshold then discard the stop candidate.
                         tripStopLocation = nil
                     }
                 }
             }
         } else {
+            // Enumerate in reverse checking for the first start event.
             for location in locations.reverse() {
                 if let loc = location as? CLLocation {
                     if loc.speed > driveMetersPerSecond {
                         tripStartLocation = loc
+                        // Save the start location in the user defaults in case the app is terminated.
                         let data = NSKeyedArchiver.archivedDataWithRootObject(loc)
                         NSUserDefaults.standardUserDefaults().setObject(data, forKey: tripStartLocationKey)
                         startTrip()
@@ -132,8 +139,10 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
     
     private func stopTrip() {
         println("Stopping trip")
+        // Generate the report before clearing out the stored properties.  It is a struct so this is fine.
         let report = TripReport(startLocation: tripStartLocation!, endLocation: tripStopLocation!)
         tripStartLocation = nil
+        // Clear out the user defaults reference so we don't get dupe trips.
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: tripStartLocationKey)
         tripStopLocation = nil
         tripInProgress = false
