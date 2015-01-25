@@ -16,8 +16,6 @@ The application has a number of depedencies that will need to be installed befor
 - Cocoapods (0.36.0.beta.1 or later)
 - Mogenerator
 
-There is a single script that will take care of any depedencies that can be run from the project root using ``.
-
 Third-party code
 ----------------
 Because of the nature of the challenge I wanted to reduce the amount of third-party code to a minimum, however I did add a couple of depedencies that are unrelated to the core challenge.  
@@ -34,11 +32,9 @@ Used to link the depedency of MagicalRecord so I didn't need to use a git submod
 Methodology
 -----------
 ### Core Motion source
-The requirements were clearly written around configuring and setting up CoreLocation but looking at the broader picture it was clear that such an application would be a pretty significant battery drain.  As such it makes sense to consider having two possible datasources for the start/end trip events: one based on pure CoreLocation APIs and one based on using CoreMotion on supported devices as the CoreMotion activities do a very good job of giving you the same indications with far less battery consumption (supposedly anyway, I did not have time for doing A/B tests).  
+The requirements were clearly written around configuring and setting up CoreLocation but looking at the broader picture it was clear that such an application would be a pretty significant battery drain.  As such it makes sense to consider having two possible datasources for the start/end trip events: one based on pure CoreLocation APIs and one based on using CoreMotion on supported devices as the CoreMotion activities do a very good job of giving you the same indications with far less battery consumption.
 
-As such there is an optional codepath that uses CoreMotion and the TripManager will check the device capabilities at runtime and choose the best path that the device supports.  These sources are connected through a protocol to make the TripManager insensitive to the code path chosen, although the start/end triggers will be different.
-
-I bring this up because the functional requirements mention specific triggers for what constitutes a start and end trip event which the CoreLocation path uses but the CoreMotion path does not.  The intent is the same and the CoreMotion path can be disabled from a configuration in the plist that I provided but I thought it was an important option to include. 
+Unfortunately, as I was experimenting with this path I found that CoreMotion activity changes are not delivered when the app is suspended.  This could have still worked since you can get timestamps of the transition between different CoreMotion activities but unfortunately the activity changes do not include any location data so it will not work for this purpose.  I considered ripping it out but instead I just disabled it and left it in so that you could better understand the thought process that went into it.
 
 ### Alerts/Errors
 Because I wanted the view controller to manage the error display directly I went with a pattern that involved sending back NSError objects which would then be translated into UIAlertViews by the view controller itself.  The only complexity here was that location permissions errors need very specific error messaging with alerts that link into settings pages so I mapped them using an extension on UIAlertView and matching of error codes.
