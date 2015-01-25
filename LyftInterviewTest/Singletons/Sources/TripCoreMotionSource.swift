@@ -49,6 +49,14 @@ class TripCoreMotionSource: TripManagerSource, Printable {
     
     // MARK: - Private
     
+    private func startTrip() {
+        
+    }
+    
+    private func stopTrip() {
+        
+    }
+    
     private func activityChanged(newActivity: CMMotionActivity) {
         println("Activity changed")
         if tripInProgress && !newActivity.automotive {

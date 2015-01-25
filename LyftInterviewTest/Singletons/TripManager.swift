@@ -23,7 +23,7 @@ struct TripReport {
     let endLocation: CLLocation
 }
 
-// Protocol which allows for an abstraction of the use of Core Motion or Core Location sources depending on device capabilities.
+// Protocol which allows for an abstraction of the use of different location sources depending on device capabilities.
 protocol TripManagerSource: class {
     class func sourceName() -> String
     class func sourceAvailable() -> Bool
@@ -49,10 +49,7 @@ class TripManager: TripSourceDelegate {
     private lazy var tripManagerContext = NSManagedObjectContext.MR_context()
     
     init() {
-        if TripCoreMotionSource.sourceAvailable() {
-            source = TripCoreMotionSource()
-            source?.delegate = self
-        } else if TripCoreLocationSource.sourceAvailable() {
+        if TripCoreLocationSource.sourceAvailable() {
             source = TripCoreLocationSource()
             source?.delegate = self
         }
