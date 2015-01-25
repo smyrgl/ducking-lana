@@ -26,7 +26,13 @@ class Trip: _Trip {
         if let sTime = startTime {
             displayString += "\(Trip.sharedTimeFormatter().stringFromDate(sTime).lowercaseString)-"
             if let eTime = endTime {
-                displayString += "\(Trip.sharedTimeFormatter().stringFromDate(eTime).lowercaseString) (\(sTime.minutesBetweenDate(eTime))min)"
+                displayString += "\(Trip.sharedTimeFormatter().stringFromDate(eTime).lowercaseString)"
+                let minutes = sTime.minutesBetweenDate(eTime)
+                if minutes == 0 {
+                    displayString +=  "(<1min)"
+                } else {
+                    displayString +=  "(\(minutes)min)"
+                }
             } else {
                 displayString += "Now"
             }
