@@ -3,6 +3,15 @@ private let timeFormatterCacheKey = "com.lyftinterviewtest.cache.trip.timeformat
 @objc(Trip)
 
 class Trip: _Trip {
+    
+    var valid: Bool {
+        if let startDisplay = start?.displayName {
+            if let endDisplay = end?.displayName {
+                return true
+            }
+        }
+        return false
+    }
 
     var displayString: String {
         var displayString = ""

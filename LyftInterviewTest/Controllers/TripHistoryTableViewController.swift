@@ -114,7 +114,7 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
     // MARK: - Internal
     
     private func offsetIndexPath(originalPath: NSIndexPath) -> NSIndexPath {
-        return NSIndexPath(forRow: originalPath.row + offset, inSection: originalPath.section)
+        return NSIndexPath(forRow: originalPath.row - offset, inSection: originalPath.section)
     }
     
     private func configureCell(cell: UITableViewCell, atIndexPath: NSIndexPath) {
@@ -136,7 +136,16 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
         if let theTripSwitch = tripSwitch {
             if theTripSwitch.on {
                 println("Trip switch turned on")
-                TripManager.sharedManager.enableLogging()
+                TripManager.sharedManager.enableLogging({ (started, error) -> () in
+                    if started {
+                        println("Trip manager started logging")
+                    } else {
+                        println("Error starting trip manager \(error)")
+                        if let err = error {
+                            UIAlertView.alertWithError(err)
+                        }
+                    }
+                })
             } else {
                 println("Trip switch turned off")
                 TripManager.sharedManager.disableLogging()

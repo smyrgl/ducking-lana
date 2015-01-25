@@ -29,6 +29,11 @@
 		52B6D3DA1A732AA300CFB0A2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6D3D91A732AA300CFB0A2 /* Appearance.swift */; };
 		52B6D3DE1A732CA500CFB0A2 /* TripManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6D3DD1A732CA500CFB0A2 /* TripManager.swift */; };
 		52E69EB91A741237000C3F05 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E69EB81A741237000C3F05 /* DateExtensions.swift */; };
+		52E69EBE1A741751000C3F05 /* TripCoreMotionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E69EBD1A741751000C3F05 /* TripCoreMotionSource.swift */; };
+		52E69EC01A74176C000C3F05 /* TripCoreLocationSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E69EBF1A74176C000C3F05 /* TripCoreLocationSource.swift */; };
+		52E69EC21A7445CA000C3F05 /* AlertViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E69EC11A7445CA000C3F05 /* AlertViewExtensions.swift */; };
+		52E69EC41A7457E3000C3F05 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E69EC31A7457E3000C3F05 /* CoreLocation.framework */; };
+		52E69EC61A7457E9000C3F05 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E69EC51A7457E9000C3F05 /* CoreMotion.framework */; };
 		52F318771A731F760080001E /* TripHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318761A731F760080001E /* TripHistoryTableViewController.swift */; };
 		52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52F318781A731F950080001E /* TripHistoryModel.xcdatamodeld */; };
 		52F3188B1A7321A60080001E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F318861A7321A60080001E /* Place.swift */; };
@@ -71,6 +76,11 @@
 		52B6D3D91A732AA300CFB0A2 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Utilities/Appearance.swift; sourceTree = "<group>"; };
 		52B6D3DD1A732CA500CFB0A2 /* TripManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripManager.swift; path = Singletons/TripManager.swift; sourceTree = "<group>"; };
 		52E69EB81A741237000C3F05 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Extensions/DateExtensions.swift; sourceTree = "<group>"; };
+		52E69EBD1A741751000C3F05 /* TripCoreMotionSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCoreMotionSource.swift; path = Singletons/Sources/TripCoreMotionSource.swift; sourceTree = "<group>"; };
+		52E69EBF1A74176C000C3F05 /* TripCoreLocationSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCoreLocationSource.swift; path = Singletons/Sources/TripCoreLocationSource.swift; sourceTree = "<group>"; };
+		52E69EC11A7445CA000C3F05 /* AlertViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertViewExtensions.swift; path = Extensions/AlertViewExtensions.swift; sourceTree = "<group>"; };
+		52E69EC31A7457E3000C3F05 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		52E69EC51A7457E9000C3F05 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		52F318701A731E680080001E /* lyft-interview-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lyft-interview-bridging-header.h"; sourceTree = "<group>"; };
 		52F318761A731F760080001E /* TripHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripHistoryTableViewController.swift; path = Controllers/TripHistoryTableViewController.swift; sourceTree = "<group>"; };
 		52F318791A731F950080001E /* TripHistoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripHistoryModel.xcdatamodel; sourceTree = "<group>"; };
@@ -86,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E69EC61A7457E9000C3F05 /* CoreMotion.framework in Frameworks */,
+				52E69EC41A7457E3000C3F05 /* CoreLocation.framework in Frameworks */,
 				5D39E8A0311F09083541A401 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,8 +179,18 @@
 			isa = PBXGroup;
 			children = (
 				52E69EB81A741237000C3F05 /* DateExtensions.swift */,
+				52E69EC11A7445CA000C3F05 /* AlertViewExtensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		52E69EBC1A74171E000C3F05 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				52E69EBD1A741751000C3F05 /* TripCoreMotionSource.swift */,
+				52E69EBF1A74176C000C3F05 /* TripCoreLocationSource.swift */,
+			);
+			name = Sources;
 			sourceTree = "<group>";
 		};
 		52F318711A731EBD0080001E /* Models */ = {
@@ -209,6 +231,7 @@
 		52F318751A731EDB0080001E /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
+				52E69EBC1A74171E000C3F05 /* Sources */,
 				52B6D3DD1A732CA500CFB0A2 /* TripManager.swift */,
 			);
 			name = Singletons;
@@ -246,6 +269,8 @@
 		C4A2B292B4636A97001AFCE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52E69EC51A7457E9000C3F05 /* CoreMotion.framework */,
+				52E69EC31A7457E3000C3F05 /* CoreLocation.framework */,
 				047647ABC2BE958A9DA0671E /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -307,6 +332,11 @@
 				TargetAttributes = {
 					5249CE8D1A731CCA00B91CE8 = {
 						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					5249CEA21A731CCA00B91CE8 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -474,7 +504,10 @@
 				5249CE941A731CCA00B91CE8 /* AppDelegate.swift in Sources */,
 				52F3187A1A731F950080001E /* TripHistoryModel.xcdatamodeld in Sources */,
 				52B6D3DA1A732AA300CFB0A2 /* Appearance.swift in Sources */,
+				52E69EC01A74176C000C3F05 /* TripCoreLocationSource.swift in Sources */,
 				52F318771A731F760080001E /* TripHistoryTableViewController.swift in Sources */,
+				52E69EBE1A741751000C3F05 /* TripCoreMotionSource.swift in Sources */,
+				52E69EC21A7445CA000C3F05 /* AlertViewExtensions.swift in Sources */,
 				52F3188E1A7321A60080001E /* _Trip.swift in Sources */,
 				52F3188B1A7321A60080001E /* Place.swift in Sources */,
 				52F3188D1A7321A60080001E /* _Place.swift in Sources */,
@@ -610,7 +643,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LyftInterviewTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LyftInterviewTest/lyft-interview-bridging-header.h";
@@ -623,7 +656,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LyftInterviewTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LyftInterviewTest/lyft-interview-bridging-header.h";
