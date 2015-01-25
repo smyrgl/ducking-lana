@@ -10,6 +10,7 @@ import Foundation
 
 extension NSDate {
     func minutesBetweenDate(otherDate: NSDate) -> Int {
-        return Int(otherDate.timeIntervalSinceDate(self) / 60)
+        let interval = round(otherDate.timeIntervalSinceDate(self) / 60)
+        return Int(interval)
     }
 }
