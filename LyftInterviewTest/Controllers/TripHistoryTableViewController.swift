@@ -60,7 +60,7 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("tripCell", forIndexPath: indexPath) as UITableViewCell
             
-            configureCell(cell, atIndexPath: offsetIndexPath(indexPath))
+            configureCell(cell, atIndexPath: NSIndexPath(forRow: indexPath.row - offset, inSection: indexPath.section))
             
             return cell
         }
@@ -114,7 +114,7 @@ class TripHistoryTableViewController: UITableViewController, NSFetchedResultsCon
     // MARK: - Internal
     
     private func offsetIndexPath(originalPath: NSIndexPath) -> NSIndexPath {
-        return NSIndexPath(forRow: originalPath.row - offset, inSection: originalPath.section)
+        return NSIndexPath(forRow: originalPath.row + offset, inSection: originalPath.section)
     }
     
     private func configureCell(cell: UITableViewCell, atIndexPath: NSIndexPath) {

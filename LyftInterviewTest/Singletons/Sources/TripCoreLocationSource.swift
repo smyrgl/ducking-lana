@@ -10,6 +10,8 @@ import Foundation
 import CoreLocation
 
 private let errorDomain = "com.lyftinterviewtest.tripsource.corelocation.errors"
+private let tripStartLocationKey = "com.lyftinterviewtest.tripsource.corelocation.tripstart"
+private let stopTimeBeforeTripEnds = 1.0
 
 enum TripCoreLocationSourceErrorCodes: Int {
     case AuthorizationError = 101
@@ -31,6 +33,11 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
         super.init()
         locationManager.delegate = self
         locationManager.distanceFilter = 100
+        if let data = NSUserDefaults.standardUserDefaults().dataForKey(tripStartLocationKey) {
+            println("Resuming trip")
+            tripStartLocation = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? CLLocation
+            tripInProgress = true
+        }
     }
     
     // MARK: - Trip Manager Source
@@ -87,7 +94,7 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
                 if let loc = location as? CLLocation {
                     if loc.speed < driveMetersPerSecond {
                         if let stopLoc = tripStopLocation {
-                            if loc.timestamp.timeIntervalSinceDate(stopLoc.timestamp) > 5 {
+                            if loc.timestamp.timeIntervalSinceDate(stopLoc.timestamp) > stopTimeBeforeTripEnds {
                                 stopTrip()
                             }
                         } else {
@@ -103,6 +110,8 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
                 if let loc = location as? CLLocation {
                     if loc.speed > driveMetersPerSecond {
                         tripStartLocation = loc
+                        let data = NSKeyedArchiver.archivedDataWithRootObject(loc)
+                        NSUserDefaults.standardUserDefaults().setObject(data, forKey: tripStartLocationKey)
                         startTrip()
                     }
                 }
@@ -124,6 +133,7 @@ class TripCoreLocationSource: NSObject, TripManagerSource, CLLocationManagerDele
         println("Stopping trip")
         let report = TripReport(startLocation: tripStartLocation!, endLocation: tripStopLocation!)
         tripStartLocation = nil
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: tripStartLocationKey)
         tripStopLocation = nil
         tripInProgress = false
         if let del = delegate {

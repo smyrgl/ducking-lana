@@ -4,15 +4,6 @@ private let timeFormatterCacheKey = "com.lyftinterviewtest.cache.trip.timeformat
 
 class Trip: _Trip {
     
-    var valid: Bool {
-        if let startDisplay = start?.displayName {
-            if let endDisplay = end?.displayName {
-                return true
-            }
-        }
-        return false
-    }
-
     var displayString: String {
         var displayString = ""
         if let theStart = start {
@@ -35,7 +26,7 @@ class Trip: _Trip {
         if let sTime = startTime {
             displayString += "\(Trip.sharedTimeFormatter().stringFromDate(sTime))-"
             if let eTime = endTime {
-                displayString += "\(Trip.sharedTimeFormatter().stringFromDate(eTime)) (\(sTime.minutesBetweenDate(eTime)))"
+                displayString += "\(Trip.sharedTimeFormatter().stringFromDate(eTime)) (\(sTime.minutesBetweenDate(eTime))min)"
             } else {
                 displayString += "Now"
             }

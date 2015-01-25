@@ -108,7 +108,9 @@ class TripManager: TripSourceDelegate {
     }
     
     func sourceDidEndTrip(source: TripManagerSource, report: TripReport) {
-        MagicalRecord.saveWithBlock { (context) -> Void in
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            let context = NSManagedObjectContext.MR_context()
+            
             println("Trip manager source did stop trip")
             var trip = Trip.MR_createEntityInContext(context)
             trip.startTime = report.startLocation.timestamp
@@ -124,25 +126,36 @@ class TripManager: TripSourceDelegate {
             endPlace.longitude = report.endLocation.coordinate.longitude
             trip.end = endPlace
             
+            let semaphore = dispatch_semaphore_create(1)
+            
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+
             self.geocoder.reverseGeocodeLocation(report.startLocation,
                 completionHandler: { (placemarks, error) -> Void in
-                    let sPlace = startPlace.MR_inContext(context)
                     if let placemark = placemarks.first as? CLPlacemark {
-                        sPlace.displayName = placemark.name
+                        startPlace.displayName = placemark.name
                     } else {
-                        sPlace.displayName = "\(sPlace.latitude) \(sPlace.longitude)"
+                        startPlace.displayName = "\(startPlace.latitude) \(startPlace.longitude)"
                     }
+                    dispatch_semaphore_signal(semaphore)
             })
+            
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
             
             self.geocoder.reverseGeocodeLocation(report.endLocation,
                 completionHandler: { (placemarks, error) -> Void in
-                    let ePlace = endPlace.MR_inContext(context)
                     if let placemark = placemarks.first as? CLPlacemark {
-                        ePlace.displayName = placemark.name
+                        endPlace.displayName = placemark.name
                     } else {
-                        ePlace.displayName = "\(ePlace.latitude) \(ePlace.longitude)"
+                        endPlace.displayName = "\(endPlace.latitude) \(endPlace.longitude)"
                     }
+                    dispatch_semaphore_signal(semaphore)
             })
-        }
+            
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+            context.MR_saveToPersistentStoreAndWait()
+            dispatch_semaphore_signal(semaphore)
+        })
     }
+    
 }
